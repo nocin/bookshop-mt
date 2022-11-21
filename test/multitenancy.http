@@ -1,0 +1,40 @@
+@server = http://localhost:4004
+@me = Authorization: Basic {{$processEnv USER}}:
+
+
+###
+POST {{server}}/-/cds/deployment/subscribe HTTP/1.1
+Content-Type: application/json
+Authorization: Basic xi:
+
+{
+  "tenant": "t1"
+}
+
+###
+POST {{server}}/-/cds/deployment/subscribe HTTP/1.1
+Content-Type: application/json
+Authorization: Basic xi:
+
+{
+  "tenant": "t2"
+}
+
+###
+POST {{server}}/-/cds/deployment/subscribe HTTP/1.1
+Content-Type: application/json
+Authorization: Basic xi:
+
+{
+  "tenant": "t3"
+}
+
+
+
+PUT {{server}}/-/cds/saas-provisioning/t1
+Content-Type: application/json
+Authorization: Basic xi:
+
+{
+}
+###

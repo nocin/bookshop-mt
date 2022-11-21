@@ -1,0 +1,35 @@
+@server = http://localhost:4004
+@joe = Authorization: Basic joe:
+@julie = Authorization: Basic julie:
+
+
+### ------------------------------------------------------------------------
+# Get service info
+GET {{server}}/Catalog
+{{joe}}
+
+### ------------------------------------------------------------------------
+# Get $metadata document
+GET {{server}}/Catalog/$metadata
+{{joe}}
+
+### ------------------------------------------------------------------------
+# Get Books
+GET {{server}}/Catalog/Books
+{{joe}}
+
+### ------------------------------------------------------------------------
+# Browse Books as any user
+GET {{server}}/Catalog/ListOfBooks?
+  # &$select=title,stock
+  # &sap-language=de
+{{joe}}
+
+### ------------------------------------------------------------------------
+# Submit Order as authenticated user
+# (send that three times to get out-of-stock message)
+POST {{server}}/Catalog/submitOrder
+Content-Type: application/json
+{{joe}}
+
+{ "book":1, "quantity":1 }
