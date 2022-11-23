@@ -1,7 +1,12 @@
 {
-  "welcomeFile": "index.html",
+  "welcomeFile": "/app/index.html",
   "authenticationMethod": "route",
   "routes": [
+    {
+      "source": "^/-/cds/.*",
+      "destination": "mtx-api",
+      "authenticationType": "none"
+    },
     {
       "source": "^/app/(.*)$",
       "target": "$1",

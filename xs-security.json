@@ -35,5 +35,12 @@
     "$XSAPPNAME.cds.Subscriber",
     "$XSAPPNAME.cds.ExtensionDeveloper",
     "$XSAPPNAME.cds.UIFlexDeveloper"
-  ]
+  ],
+  "oauth2-configuration": {
+    "token-validity": 3600,
+    "redirect-uris": [
+      "http://localhost:5000",
+      "http*://*.cfapps.*.hana.ondemand.com/**"
+    ]
+  }
 }
