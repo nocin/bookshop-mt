@@ -53,35 +53,6 @@
         "multitenancy": false,
         "db": {
           "kind": "sql"
-        },
-        "auth": {
-          "kind": "mock",
-          "users": {
-            "joe": {
-              "roles": [
-                "Admin",
-                "Viewer"
-              ],
-              "tenant": "t1"
-            },
-            "julie": {
-              "roles": [
-                "Viewer"
-              ],
-              "tenant": "t2"
-            },
-            "bob": {
-              "roles": [
-                "Viewer"
-              ],
-              "tenant": "t3"
-            },
-            "xi": {
-              "roles": [
-                "internal-user"
-              ]
-            }
-          }
         }
       },
       "[production]": {
@@ -100,7 +71,7 @@
         }
       },
       "[mtx]": {
-        "comment": "",
+        "comment": "local testing with cds w --profile mtx",
         "multitenancy": true,
         "db": {
           "kind": "sql-mt"
