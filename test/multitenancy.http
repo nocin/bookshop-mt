@@ -5,7 +5,7 @@
 ###
 POST {{server}}/-/cds/deployment/subscribe HTTP/1.1
 Content-Type: application/json
-Authorization: Basic xi:
+Authorization: Basic yves:
 
 {
   "tenant": "t1"
@@ -14,7 +14,7 @@ Authorization: Basic xi:
 ###
 POST {{server}}/-/cds/deployment/subscribe HTTP/1.1
 Content-Type: application/json
-Authorization: Basic xi:
+Authorization: Basic yves:
 
 {
   "tenant": "t2"
@@ -23,7 +23,7 @@ Authorization: Basic xi:
 ###
 POST {{server}}/-/cds/deployment/subscribe HTTP/1.1
 Content-Type: application/json
-Authorization: Basic xi:
+Authorization: Basic yves:
 
 {
   "tenant": "t3"
@@ -33,7 +33,7 @@ Authorization: Basic xi:
 
 PUT {{server}}/-/cds/saas-provisioning/t1
 Content-Type: application/json
-Authorization: Basic xi:
+Authorization: Basic yves:
 
 {
 }
