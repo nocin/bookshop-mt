@@ -17,7 +17,8 @@
     "sqlite3": "^5.0.4"
   },
   "scripts": {
-    "start": "cds run"
+    "start": "cds run",
+    "undeploy": "cf undeploy bookshop --delete-services --delete-service-keys --delete-service-brokers --retries 0"
   },
   "engines": {
     "node": "^16.15"
