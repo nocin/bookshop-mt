@@ -18,6 +18,7 @@
   },
   "scripts": {
     "start": "cds run",
+    "deploy": "mbt build && cf deploy mta_archives/bookshop_1.0.0.mtar",
     "undeploy": "cf undeploy bookshop --delete-services --delete-service-keys --delete-service-brokers --retries 0"
   },
   "engines": {
