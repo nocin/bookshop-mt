@@ -6,6 +6,8 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
+    "@sap-cloud-sdk/core": "^1.54.2",
+    "@sap-cloud-sdk/http-client": "^2.14.0",
     "@sap/cds": "^6",
     "@sap/cds-mtxs": "^1",
     "@sap/xssec": "^3.2.14",
@@ -18,8 +20,9 @@
   },
   "scripts": {
     "start": "cds run",
-    "deploy": "mbt build && cf deploy mta_archives/bookshop_1.0.0.mtar",
-    "undeploy": "cf undeploy bookshop --delete-services --delete-service-keys --delete-service-brokers --retries 0"
+    "deploy": "mbt build && cf deploy mta_archives/bookshop_1.0.0.mtar --retries 0",
+    "undeploy": "cf undeploy bookshop --delete-services --delete-service-keys --delete-service-brokers --retries 0",
+    "xsuaa": "cds bind -2 bookshop-auth --kind xsuaa --profile hybrid"
   },
   "engines": {
     "node": "^16.15"
@@ -74,6 +77,21 @@
         "multitenancy": true,
         "db": {
           "kind": "sql-mt"
+        }
+      },
+      "NorthWind": {
+        "kind": "odata",
+        "model": "srv/external/NorthWind",
+        "credentials": {
+          "[production]": {
+            "destination": "NorthWind"
+          },
+          "[hybrid]": {
+            "destination": "NorthWind"
+          },
+          "[development]": {
+            "url": "https://services.odata.org/Experimental/OData/OData.svc"
+          }
         }
       }
     }

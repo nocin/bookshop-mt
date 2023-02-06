@@ -1,0 +1,343 @@
+{
+  "meta": {
+    "creator": "cds-dk 6.3.1"
+  },
+  "$version": "2.0",
+  "definitions": {
+    "NorthWind.Products": {
+      "kind": "entity",
+      "@cds.external": true,
+      "@cds.persistence.skip": true,
+      "elements": {
+        "ID": {
+          "key": true,
+          "notNull": true,
+          "type": "cds.Integer"
+        },
+        "Name": {
+          "notNull": false,
+          "type": "cds.LargeString"
+        },
+        "Description": {
+          "notNull": false,
+          "type": "cds.LargeString"
+        },
+        "ReleaseDate": {
+          "notNull": true,
+          "type": "cds.DateTime",
+          "@odata.Type": "Edm.DateTimeOffset"
+        },
+        "DiscontinuedDate": {
+          "notNull": false,
+          "type": "cds.DateTime",
+          "@odata.Type": "Edm.DateTimeOffset"
+        },
+        "Rating": {
+          "notNull": true,
+          "type": "cds.Integer"
+        },
+        "Price": {
+          "notNull": true,
+          "type": "cds.Double"
+        },
+        "Categories": {
+          "type": "cds.Association",
+          "@cds.ambiguous": "missing on condition?",
+          "target": "NorthWind.Categories",
+          "cardinality": {
+            "max": "*"
+          },
+          "keys": []
+        },
+        "Supplier": {
+          "type": "cds.Association",
+          "@cds.ambiguous": "missing on condition?",
+          "target": "NorthWind.Suppliers",
+          "cardinality": {
+            "max": 1
+          },
+          "keys": []
+        },
+        "ProductDetail": {
+          "type": "cds.Association",
+          "@cds.ambiguous": "missing on condition?",
+          "target": "NorthWind.ProductDetails",
+          "cardinality": {
+            "max": 1
+          },
+          "keys": []
+        }
+      }
+    },
+    "NorthWind.FeaturedProduct": {
+      "kind": "entity",
+      "@cds.external": true,
+      "@cds.persistence.skip": true,
+      "includes": [
+        "NorthWind.Products"
+      ],
+      "elements": {
+        "Advertisement": {
+          "type": "cds.Association",
+          "@cds.ambiguous": "missing on condition?",
+          "target": "NorthWind.Advertisements",
+          "cardinality": {
+            "max": 1
+          },
+          "keys": []
+        }
+      }
+    },
+    "NorthWind.ProductDetails": {
+      "kind": "entity",
+      "@cds.external": true,
+      "@cds.persistence.skip": true,
+      "elements": {
+        "ProductID": {
+          "key": true,
+          "notNull": true,
+          "type": "cds.Integer"
+        },
+        "Details": {
+          "notNull": false,
+          "type": "cds.LargeString"
+        },
+        "Product": {
+          "type": "cds.Association",
+          "@cds.ambiguous": "missing on condition?",
+          "target": "NorthWind.Products",
+          "cardinality": {
+            "max": 1
+          },
+          "keys": []
+        }
+      }
+    },
+    "NorthWind.Categories": {
+      "kind": "entity",
+      "@cds.external": true,
+      "@cds.persistence.skip": true,
+      "elements": {
+        "ID": {
+          "key": true,
+          "notNull": true,
+          "type": "cds.Integer"
+        },
+        "Name": {
+          "notNull": false,
+          "type": "cds.LargeString"
+        },
+        "Products": {
+          "type": "cds.Association",
+          "@cds.ambiguous": "missing on condition?",
+          "target": "NorthWind.Products",
+          "cardinality": {
+            "max": "*"
+          },
+          "keys": []
+        }
+      }
+    },
+    "NorthWind.Suppliers": {
+      "kind": "entity",
+      "@cds.external": true,
+      "@cds.persistence.skip": true,
+      "elements": {
+        "ID": {
+          "key": true,
+          "notNull": true,
+          "type": "cds.Integer"
+        },
+        "Name": {
+          "notNull": false,
+          "type": "cds.LargeString"
+        },
+        "Address": {
+          "type": "NorthWind.Address"
+        },
+        "Concurrency": {
+          "notNull": true,
+          "type": "cds.Integer"
+        },
+        "Products": {
+          "type": "cds.Association",
+          "@cds.ambiguous": "missing on condition?",
+          "target": "NorthWind.Products",
+          "cardinality": {
+            "max": "*"
+          },
+          "keys": []
+        }
+      }
+    },
+    "NorthWind.Persons": {
+      "kind": "entity",
+      "@cds.external": true,
+      "@cds.persistence.skip": true,
+      "elements": {
+        "ID": {
+          "key": true,
+          "notNull": true,
+          "type": "cds.Integer"
+        },
+        "Name": {
+          "notNull": false,
+          "type": "cds.LargeString"
+        },
+        "PersonDetail": {
+          "type": "cds.Association",
+          "@cds.ambiguous": "missing on condition?",
+          "target": "NorthWind.PersonDetails",
+          "cardinality": {
+            "max": 1
+          },
+          "keys": []
+        }
+      }
+    },
+    "NorthWind.Customer": {
+      "kind": "entity",
+      "@cds.external": true,
+      "@cds.persistence.skip": true,
+      "includes": [
+        "NorthWind.Persons"
+      ],
+      "elements": {
+        "TotalExpense": {
+          "notNull": true,
+          "type": "cds.Decimal"
+        }
+      }
+    },
+    "NorthWind.Employee": {
+      "kind": "entity",
+      "@cds.external": true,
+      "@cds.persistence.skip": true,
+      "includes": [
+        "NorthWind.Persons"
+      ],
+      "elements": {
+        "EmployeeID": {
+          "notNull": true,
+          "type": "cds.Integer64"
+        },
+        "HireDate": {
+          "notNull": true,
+          "type": "cds.DateTime",
+          "@odata.Type": "Edm.DateTimeOffset"
+        },
+        "Salary": {
+          "notNull": true,
+          "type": "cds.Double",
+          "@odata.Type": "Edm.Single"
+        }
+      }
+    },
+    "NorthWind.PersonDetails": {
+      "kind": "entity",
+      "@cds.external": true,
+      "@cds.persistence.skip": true,
+      "elements": {
+        "PersonID": {
+          "key": true,
+          "notNull": true,
+          "type": "cds.Integer"
+        },
+        "Age": {
+          "notNull": true,
+          "type": "cds.Integer",
+          "@odata.Type": "Edm.Byte"
+        },
+        "Gender": {
+          "notNull": true,
+          "type": "cds.Boolean"
+        },
+        "Phone": {
+          "notNull": false,
+          "type": "cds.LargeString"
+        },
+        "Address": {
+          "type": "NorthWind.Address"
+        },
+        "Photo": {
+          "notNull": true,
+          "type": "cds.LargeBinary",
+          "@Core.MediaType": "application/octet-stream"
+        },
+        "Person": {
+          "type": "cds.Association",
+          "@cds.ambiguous": "missing on condition?",
+          "target": "NorthWind.Persons",
+          "cardinality": {
+            "max": 1
+          },
+          "keys": []
+        }
+      }
+    },
+    "NorthWind.Advertisements": {
+      "kind": "entity",
+      "@cds.external": true,
+      "@cds.persistence.skip": true,
+      "elements": {
+        "ID": {
+          "key": true,
+          "notNull": true,
+          "type": "cds.UUID"
+        },
+        "Name": {
+          "notNull": false,
+          "type": "cds.LargeString"
+        },
+        "AirDate": {
+          "notNull": true,
+          "type": "cds.DateTime",
+          "@odata.Type": "Edm.DateTimeOffset"
+        },
+        "FeaturedProduct": {
+          "type": "cds.Association",
+          "@cds.ambiguous": "missing on condition?",
+          "target": "NorthWind.FeaturedProduct",
+          "cardinality": {
+            "max": 1
+          },
+          "keys": []
+        },
+        "blob": {
+          "@Core.MediaType": "application/octet-stream",
+          "type": "cds.LargeBinary"
+        }
+      }
+    },
+    "NorthWind.Address": {
+      "kind": "type",
+      "@cds.external": true,
+      "elements": {
+        "Street": {
+          "notNull": false,
+          "type": "cds.LargeString"
+        },
+        "City": {
+          "notNull": false,
+          "type": "cds.LargeString"
+        },
+        "State": {
+          "notNull": false,
+          "type": "cds.LargeString"
+        },
+        "ZipCode": {
+          "notNull": false,
+          "type": "cds.LargeString"
+        },
+        "Country": {
+          "notNull": false,
+          "type": "cds.LargeString"
+        }
+      }
+    },
+    "NorthWind": {
+      "kind": "service",
+      "@cds.external": true
+    }
+  }
+}

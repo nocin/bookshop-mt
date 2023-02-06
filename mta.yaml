@@ -29,6 +29,7 @@ modules:
       - name: bookshop-auth
       - name: bookshop-registry
       - name: bookshop-db
+      - name: bookshop-destination
       - name: app-api
         properties:
           SUBSCRIPTION_URL: ~{app-protocol}://\${tenant_subdomain}-~{app-uri}
@@ -98,3 +99,9 @@ resources:
     parameters:
       service: service-manager
       service-plan: container
+
+  - name: bookshop-destination
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service-plan: lite
+      service: destination
