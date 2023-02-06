@@ -56,7 +56,6 @@ modules:
           name: mtx-api # must be used in xs-app.json as well
           url: ~{mtx-url}    
       - name: bookshop-auth
-      - name: bookshop-destination
     provides:
       - name: app-api
         properties:
